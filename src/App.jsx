@@ -54,18 +54,17 @@ console.log(newProduct);
       getProducts();
     }
   }
-  const res = await axios.post(API,newProduct)
-  console.log(res);
-  if(res.status == 200){
-    setNewProduct({
-      title: "",
-      price: "",
-      img: "",
-      description: ""
-  })
-    getProducts()
-  }
   
+}
+async function updateProduct(id, updateProductInfo){
+  console.log(id);
+
+  const res = await axios.put(`${API}/${id}`, updateProductInfo);
+
+if(res.status == 200){
+  getProducts();
+}
+
 }
 
   useEffect(() => {
@@ -116,6 +115,7 @@ console.log(newProduct);
             product={obj}
             key={index}
             deleteProduct={deleteProduct}
+            updateProduct={updateProduct}
           />
         ))}
       </div>
